@@ -21,7 +21,6 @@ export const generateSchemasDefinition = async (
   context: ContextSpecs,
   suffix: string,
 ): Promise<GeneratorSchema[]> => {
-  console.log('schemaDefinitions');
   if (isEmpty(schemas)) {
     return [];
   }
@@ -30,7 +29,6 @@ export const generateSchemasDefinition = async (
     Object.entries(schemas),
     async (acc, [name, schema]) => {
       const schemaName = pascal(name) + suffix;
-      console.log(`schemaName ${schemaName}`);
 
       if (
         (!schema.type || schema.type === 'object') &&

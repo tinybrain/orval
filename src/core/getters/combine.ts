@@ -79,12 +79,10 @@ export const combineSchemas = async ({
   );
 
   if (isAllEnums && name) {
-    const newEnum = `\n\n// eslint-disable-next-line @typescript-eslint/no-redeclare\nexport const ${pascal(
-      name,
-    )} = ${getCombineEnumValue(resolvedData, name)}`;
+    const combined = getCombineEnumValue(resolvedData, name);
 
     return {
-      value: `${value + nullable};` + newEnum,
+      value: combined + nullable,
       imports: resolvedData.imports.map<GeneratorImport>((toImport) => ({
         ...toImport,
         values: true,
